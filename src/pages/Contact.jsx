@@ -12,14 +12,34 @@ const Contact = () => {
     });
   };
   const handleFocus = () => {
-    
+
   };
   const handleBlur = () => { };
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
-    // emailjs.setForm
-   }
+    emailjs.send(
+      import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
+      import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
+      {
+        from_name: form.name,
+        to_name: "Depth Drie",
+        from_email: form.email,
+        to_email: "moitmilk56@gmail.com",
+        message: form.message
+      },
+      import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
+    ).then(() => {
+      setIsLoading(false);
+      //TODO: Show success message
+      //TODO: Hide an alert
+      setForm({name: '', email: '', message: ''})
+    }).catch((error) => {
+      setIsLoading(false);
+      console.log(error)
+      //TODO: Show error message
+    })
+  }
 
   return (
     <section className="relative flex lg:flex-row flex-col max-container">
