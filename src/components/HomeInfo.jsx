@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 import { arrow } from "../assets/icons"
 const InfoBox = ({ text, link, btnText }) => (
@@ -42,7 +43,6 @@ const renderContent = {
 }
 
 const HomeInfo = ({ currentStage }) => {
-    console.log(currentStage)
     return renderContent[currentStage] || null;
 }
 
